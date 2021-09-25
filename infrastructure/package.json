@@ -23,6 +23,9 @@
   "dependencies": {
     "@aws-cdk/aws-codebuild": "^1.124.0",
     "@aws-cdk/aws-codecommit": "^1.124.0",
+    "@aws-cdk/aws-codepipeline": "^1.124.0",
+    "@aws-cdk/aws-events-targets": "^1.124.0",
+    "@aws-cdk/aws-iam": "^1.124.0",
     "@aws-cdk/core": "1.124.0",
     "source-map-support": "^0.5.16"
   }
