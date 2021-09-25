@@ -35,6 +35,10 @@ export class InfrastructureStack extends cdk.Stack {
       branches: ['master']
     })
 
+    repository.onPullRequestStateChange('pullRequestStateChange', {
+      // eventPattern
+    })
+
     // const pipeline = new Pipeline(this, 'master-build-pipeline', {
     //   pipelineName: 'master-build-pipeline',
     //   stages: [
