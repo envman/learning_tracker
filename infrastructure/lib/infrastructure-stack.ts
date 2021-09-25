@@ -54,6 +54,8 @@ export class InfrastructureStack extends cdk.Stack {
     //   }
     // })
 
+    console.log('test')
+
     repository.onPullRequestStateChange('pullRequestStateChange', {
       target: new CodeBuildProject(prProject),
       eventPattern: {
