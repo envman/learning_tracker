@@ -37,16 +37,31 @@ export class InfrastructureStack extends cdk.Stack {
 
     const prProject = new Project(this, 'pr-build', {
       projectName: 'pr-build',
+      source: Source.codeCommit({
+        repository,
+        // branchOrRef: 'refs/heads/master'
+      }),
       environment: {
         privileged: true
       }
     })
 
-    // repository.onPullRequestStateChange('pullRequestStateChange', {
+    // repository.onCommit('prCommit', {
+    //   target: new CodeBuildProject(prProject),
+    //   branches: ['refs/heads/feature/*'],
     //   eventPattern: {
 
     //   }
     // })
+
+    repository.onPullRequestStateChange('pullRequestStateChange', {
+      target: new CodeBuildProject(prProject),
+      eventPattern: {
+        detail: [
+          'pullRequestCreated', 'pullRequestSourceBranchUpdated'
+        ]
+      }
+    })
 
     // const pipeline = new Pipeline(this, 'master-build-pipeline', {
     //   pipelineName: 'master-build-pipeline',
