@@ -1,0 +1,23 @@
+version: 0.2
+
+env:
+  shell: bash
+  variables:
+    TEST: "Hello Test Variable"
+  exported-variables:
+    - TEST
+    - TESTING
+
+phases:
+  install:
+    runtime-versions:
+        nodejs: 12
+    commands:
+      - npm install -g aws-cdk
+      - npm install -g typescript
+      - cdk --version
+
+  build:
+    commands:
+      - echo $TEST
+      - TESTING="http://www.google.com"
