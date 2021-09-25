@@ -18,7 +18,7 @@ export class InfrastructureStack extends cdk.Stack {
 
     const project = new Project(this, 'master-build', {
       projectName: 'master-build',
-      source: Source.codeCommit({ repository, branchOrRef: 'master' }),
+      source: Source.codeCommit({ repository, branchOrRef: 'refs/heads/master' }),
     })
   }
 }
