@@ -19,6 +19,8 @@ phases:
 
   build:
     commands:
-      - echo building
-      - echo $TEST
-      - TESTING="http://www.google.com"
+      - echo Build CDK project...
+      - cd app/aws
+      - npm install
+      - export STACK_NAME=$(tr '/' '-' <<<"build-stack-${CODEBUILD_SOURCE_VERSION}") && cdk deploy --require-approval never
+      - echo Deploy completed on the `date`
