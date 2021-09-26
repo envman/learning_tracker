@@ -22,12 +22,12 @@ export class AppStack extends cdk.Stack {
       removalPolicy: RemovalPolicy.DESTROY,
     })
 
-    new BucketDeployment(this, 'client-bucket-deployment', {
-      sources: [Source.asset(path.join(__dirname, '..', 'web'))],
-      destinationBucket: clientBucket,
-      retainOnDelete: false
-    })
+    // new BucketDeployment(this, 'client-bucket-deployment', {
+    //   sources: [Source.asset(path.join(__dirname, '..', 'web'))],
+    //   destinationBucket: clientBucket,
+    //   retainOnDelete: false
+    // })
 
-    new CfnOutput(this, 'WEB_BUCKET', { value: clientBucket.bucketWebsiteUrl })
+    new CfnOutput(this, 'WEB_BUCKET', { value: clientBucket.s3UrlForObject() })
   }
 }
