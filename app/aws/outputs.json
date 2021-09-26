@@ -1,6 +1,0 @@
-{
-  "app-stack": {
-    "testdata": "http://appstack-clientbuckete00b4b19-1iq6x9avfmb9.s3-website.eu-west-2.amazonaws.com",
-    "apiEndpoint9349E63C": "https://7fhn0puewb.execute-api.eu-west-2.amazonaws.com/prod/"
-  }
-}
