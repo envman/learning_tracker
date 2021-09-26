@@ -23,7 +23,7 @@ phases:
       - echo Build CDK project...
       - cd app/aws
       - npm install
-      - export STACK_NAME=$(tr '/' '' <<<"learningtracker${CODEBUILD_SOURCE_VERSION}") && cdk deploy --require-approval never --outputs-file outputs.json
+      - export STACK_NAME=$(sed 's/\///g' <<< "learningtracker${CODEBUILD_SOURCE_VERSION}") && cdk deploy --require-approval never --outputs-file outputs.json
       - cat outputs.json
       - echo .${STACK_NAME}.WEBBUCKET
       - echo $(jq .${STACK_NAME}.WEBBUCKET outputs.json)
