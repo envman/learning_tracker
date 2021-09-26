@@ -20,7 +20,7 @@ export class InfrastructureStack extends cdk.Stack {
         's3:*'
       ],
       resources: [
-        'arn:aws:s3:::cdktoolkit-stagingbucket-1j52nar89uj9e'
+        'arn:aws:s3:::cdktoolkit-stagingbucket-*'
       ]
     }))
 
@@ -28,16 +28,16 @@ export class InfrastructureStack extends cdk.Stack {
 
     // role.addToPolicy(ManagedPolicy.fromAwsManagedPolicyName(''))
 
-    // role.addToPolicy(new PolicyStatement({
-    //   actions: [
-    //     'codebuild:CreateReport',
-    //     'codebuild:UpdateReport',
-    //     'codebuild:CreateReportGroup',
-    //     'codebuild:BatchPutTestCases',
-    //     'codebuild:BatchPutCodeCoverages'
-    //   ],
-    //   resources: ['*'],
-    // }));
+    role.addToPolicy(new PolicyStatement({
+      actions: [
+        'codebuild:CreateReport',
+        'codebuild:UpdateReport',
+        'codebuild:CreateReportGroup',
+        'codebuild:BatchPutTestCases',
+        'codebuild:BatchPutCodeCoverages'
+      ],
+      resources: ['*'],
+    }));
 
     // role.addToPolicy(new PolicyStatement({
     //   actions: [
