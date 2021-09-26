@@ -11,7 +11,8 @@ export class InfrastructureStack extends cdk.Stack {
       managedPolicies: [
         ManagedPolicy.fromAwsManagedPolicyName('AWSLambda_FullAccess'),
         ManagedPolicy.fromAwsManagedPolicyName('AmazonAPIGatewayAdministrator'),
-        ManagedPolicy.fromAwsManagedPolicyName('AWSCloudFormationFullAccess')
+        ManagedPolicy.fromAwsManagedPolicyName('AWSCloudFormationFullAccess'),
+        ManagedPolicy.fromAwsManagedPolicyName('IAMFullAccess')
       ]
     })
 
@@ -28,16 +29,16 @@ export class InfrastructureStack extends cdk.Stack {
 
     // role.addToPolicy(ManagedPolicy.fromAwsManagedPolicyName(''))
 
-    role.addToPolicy(new PolicyStatement({
-      actions: [
-        'codebuild:CreateReport',
-        'codebuild:UpdateReport',
-        'codebuild:CreateReportGroup',
-        'codebuild:BatchPutTestCases',
-        'codebuild:BatchPutCodeCoverages'
-      ],
-      resources: ['*'],
-    }));
+    // role.addToPolicy(new PolicyStatement({
+    //   actions: [
+    //     'codebuild:CreateReport',
+    //     'codebuild:UpdateReport',
+    //     'codebuild:CreateReportGroup',
+    //     'codebuild:BatchPutTestCases',
+    //     'codebuild:BatchPutCodeCoverages'
+    //   ],
+    //   resources: ['*'],
+    // }));
 
     // role.addToPolicy(new PolicyStatement({
     //   actions: [
