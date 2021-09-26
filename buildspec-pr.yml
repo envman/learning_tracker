@@ -6,7 +6,7 @@ env:
     TEST: "Hello Test Variable"
   exported-variables:
     - TEST
-    - TESTING
+    - STACK_NAME
 
 phases:
   install:
