@@ -1,7 +1,7 @@
 import * as cdk from '@aws-cdk/core';
 import { CfnOutput } from '@aws-cdk/core';
 import { Repository } from '@aws-cdk/aws-codecommit';
-import { EventAction, FilterGroup, Project, Source } from '@aws-cdk/aws-codebuild';
+import { BuildSpec, EventAction, FilterGroup, Project, Source } from '@aws-cdk/aws-codebuild';
 import { Pipeline } from '@aws-cdk/aws-codepipeline';
 import { CodeBuildProject } from '@aws-cdk/aws-events-targets';
 
@@ -19,7 +19,7 @@ export class InfrastructureStack extends cdk.Stack {
     // })
 
     const project = new Project(this, 'master-build', {
-      projectName: 'master-build',
+      projectName: 'learning-tracker',
       source: Source.gitHub({
         owner: 'envman',
         repo: 'learning_tracker',
@@ -37,21 +37,30 @@ export class InfrastructureStack extends cdk.Stack {
       // role:
     })
 
+    const prProject = new Project(this, 'master-build', {
+      projectName: 'learning-tracker-review',
+      buildSpec: BuildSpec.fromSourceFilename('buildspec-pr.yml'),
+      source: Source.gitHub({
+        owner: 'envman',
+        repo: 'learning_tracker',
+        webhook: true,
+        webhookFilters: [
+          FilterGroup.inEventOf(EventAction.PULL_REQUEST_UPDATED),
+          FilterGroup.inEventOf(EventAction.PULL_REQUEST_CREATED)
+        ]
+      }),
+      environment: {
+        privileged: true
+      },
+      // role:
+    })
+
     // repository.onCommit('commitToMaster', {
     //   target: new CodeBuildProject(project),
     //   branches: ['master']
     // })
 
-    // const prProject = new Project(this, 'pr-build', {
-    //   projectName: 'pr-build',
-    //   source: Source.codeCommit({
-    //     repository,
-    //     // branchOrRef: 'refs/heads/master'
-    //   }),
-    //   environment: {
-    //     privileged: true
-    //   }
-    // })
+
 
     // repository.onCommit('prCommit', {
     //   target: new CodeBuildProject(prProject),
