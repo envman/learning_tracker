@@ -1,7 +1,7 @@
 import * as cdk from '@aws-cdk/core';
 import { CfnOutput } from '@aws-cdk/core';
 import { Repository } from '@aws-cdk/aws-codecommit';
-import { BuildSpec, EventAction, FilterGroup, Project, Source } from '@aws-cdk/aws-codebuild';
+import { BuildSpec, EventAction, FilterGroup, LinuxBuildImage, Project, Source } from '@aws-cdk/aws-codebuild';
 import { Pipeline } from '@aws-cdk/aws-codepipeline';
 import { CodeBuildProject } from '@aws-cdk/aws-events-targets';
 
@@ -50,7 +50,8 @@ export class InfrastructureStack extends cdk.Stack {
         ]
       }),
       environment: {
-        privileged: true
+        privileged: true,
+        buildImage: LinuxBuildImage.STANDARD_5_0
       },
       // role:
     })
