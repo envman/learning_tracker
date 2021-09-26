@@ -11,6 +11,7 @@ export class InfrastructureStack extends cdk.Stack {
       managedPolicies: [
         ManagedPolicy.fromAwsManagedPolicyName('AWSLambda_FullAccess'),
         ManagedPolicy.fromAwsManagedPolicyName('AmazonAPIGatewayAdministrator'),
+        ManagedPolicy.fromAwsManagedPolicyName('AWSCloudFormationFullAccess')
       ]
     })
 
