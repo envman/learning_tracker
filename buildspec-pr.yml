@@ -1,0 +1,26 @@
+version: 0.2
+
+env:
+  shell: bash
+  variables:
+    TEST: "Hello Test Variable"
+  exported-variables:
+    - TEST
+    - STACK_NAME
+
+phases:
+  install:
+    runtime-versions:
+        nodejs: 12
+    commands:
+      - npm install -g aws-cdk
+      - npm install -g typescript
+      - cdk --version
+
+  build:
+    commands:
+      - echo Build CDK project...
+      - cd app/aws
+      - npm install
+      - export STACK_NAME=$(tr '/' '-' <<<"learning-tracker-${CODEBUILD_SOURCE_VERSION}") && cdk deploy --require-approval never
+      - echo Deploy completed on the `date`
