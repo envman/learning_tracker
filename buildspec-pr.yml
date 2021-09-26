@@ -17,10 +17,18 @@ phases:
       - npm install -g typescript
       - cdk --version
 
-  build:
+  build-cdk:
     commands:
       - echo Build CDK project...
       - cd app/aws
       - npm install
-      - export STACK_NAME=$(tr '/' '-' <<<"learning-tracker-${CODEBUILD_SOURCE_VERSION}") && cdk deploy --require-approval never
+      - export STACK_NAME=$(tr '/' '-' <<<"learning-tracker-${CODEBUILD_SOURCE_VERSION}") && cdk deploy --require-approval never --outputs-file outputs.json
+      # - 
       - echo Deploy completed on the `date`
+
+  # build-web:
+  #   commands:
+  #     - echo Build React App
+  #     - cd web
+  #     - npm run build
+  #     - 
