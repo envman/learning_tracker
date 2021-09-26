@@ -37,7 +37,7 @@ export class InfrastructureStack extends cdk.Stack {
       // role:
     })
 
-    const prProject = new Project(this, 'master-build', {
+    const prProject = new Project(this, 'review-build', {
       projectName: 'learning-tracker-review',
       buildSpec: BuildSpec.fromSourceFilename('buildspec-pr.yml'),
       source: Source.gitHub({
