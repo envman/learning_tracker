@@ -22,5 +22,5 @@ phases:
       - echo Build CDK project...
       - cd app/aws
       - npm install
-      - export STACK_NAME=$(tr '/' '-' <<<"build-stack-${CODEBUILD_SOURCE_VERSION}") && cdk deploy --require-approval never
+      - export STACK_NAME=$(tr '/' '-' <<<"learning-tracker-${CODEBUILD_SOURCE_VERSION}") && cdk deploy --require-approval never
       - echo Deploy completed on the `date`
