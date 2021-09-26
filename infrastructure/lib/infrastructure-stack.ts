@@ -14,6 +14,15 @@ export class InfrastructureStack extends cdk.Stack {
       ]
     })
 
+    role.addToPolicy(new PolicyStatement({
+      actions: [
+        's3:*'
+      ],
+      resources: [
+        'arn:aws:s3:::cdktoolkit-stagingbucket-1j52nar89uj9e'
+      ]
+    }))
+
     // ManagedPolicy.fromAwsManagedPolicyName('')
 
     // role.addToPolicy(ManagedPolicy.fromAwsManagedPolicyName(''))
