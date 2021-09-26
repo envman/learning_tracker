@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
 import * as cdk from '@aws-cdk/core';
-import { LambdaIntegration, LambdaRestApi } from '@aws-cdk/aws-apigateway';
+import { LambdaRestApi } from '@aws-cdk/aws-apigateway';
 
 export class AppStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
