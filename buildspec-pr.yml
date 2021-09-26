@@ -24,5 +24,7 @@ phases:
       - cd app/aws
       - npm install
       - export STACK_NAME=$(tr '/' '-' <<<"learning-tracker-${CODEBUILD_SOURCE_VERSION}") && cdk deploy --require-approval never --outputs-file outputs.json
+      - cat outputs.json
+      - echo $(jq .AppStack.WEBBUCKET outputs.json)
       - aws s3 sync $(jq .AppStack.WEBBUCKET outputs.json) ./web/build
       - echo Deploy completed on the `date`
